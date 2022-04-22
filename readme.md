@@ -1,13 +1,14 @@
 # FastDiff: A Fast Conditional Diffusion Model for High-Quality Speech Synthesis
 
-![alt-text-1](asserts/Demo.gif "denoising")
+<p style="text-align: center;"> <img src="assets/Demo.gif" alt="drawing" style="width:400px; "/> </p>
 
-### Rongjie Huang, Max W. Y. Lam, Jun Wang, Dan Su, Dong Yu, Yi Ren, Zhou Zhao
+
+#### Rongjie Huang, Max W. Y. Lam, Jun Wang, Dan Su, Dong Yu, Yi Ren, Zhou Zhao
 
 PyTorch Implementation of (IJCAI'22) [FastDiff: a conditional diffusion probabilistic model capable of generating high fidelity speech efficiently.](https://arxiv.org/abs/2204.09934).
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2204.09934)
-[![GitHub Stars](https://img.shields.io/github/stars/Rongjiehuang/FastDiff?style=social)](https://github.com/Rongjiehuang/Multi-Singer)
+[![GitHub Stars](https://img.shields.io/github/stars/Rongjiehuang/FastDiff?style=social)](https://github.com/Rongjiehuang/FastDiff)
 <a href="https://github.com/pytorch/fairseq/blob/main/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
 
 We provide our implementation and pretrained models as open source in this repository.
@@ -83,7 +84,7 @@ Given a well-trained score network, we start training the scheduling network (no
 
 Or you can use our pre-derived **noise_schedule** in config file
 
-## III. Inference
+### III. Inference
 
 ```
 python tasks/run.py --config path/to/config  --exp_name [your experiment name] --infer
@@ -100,7 +101,12 @@ as described in our code.
 ## Citations ##
 
 ```
-
+@article{chen2021singgan,
+  title={FastDiff: A Fast Conditional Diffusion Model for High-Quality Speech Synthesis},
+  author={Huang, Rongjie and Max W. Y. Lam and Wang, Jun and Su, Dan and Yu, Dong and Ren, Yi and Zhao, Zhou},
+  journal={arXiv preprint arXiv:2204.09934},
+  year={2021}
+}
 ```
 
 ## Disclaimer ##

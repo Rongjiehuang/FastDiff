@@ -42,7 +42,7 @@ T: 1000
 beta_0: 0.000001
 beta_T: 0.01
 
-noise_schedule: ''
-use_wav: True
-#noise_schedule: [1.7838445955931093e-06, 2.7984189728158526e-05, 0.00043231004383414984, 0.006634317338466644, 0.09357017278671265, 0.6000000238418579]
-
+noise_schedule: [3.6701e-07, 1.7032e-05, 7.908e-04, 7.6146e-01]
+test_input_dir: '' # 'wavs' # wav->wav infer
+test_mel_dir: '' # 'mels' # mel->wav infer
+use_wav: false # mel->wav infer

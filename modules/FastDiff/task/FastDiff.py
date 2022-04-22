@@ -62,34 +62,9 @@ class FastDiffTask(VocoderBaseTask):
         # y = sample['wavs']
         loss_output = {}
 
-        if hparams['noise_schedule'] != '':
-            noise_schedule = hparams['noise_schedule']
-            if isinstance(noise_schedule, list):
-                noise_schedule = torch.FloatTensor(noise_schedule).cuda()
-        else:
-            # Select Schedule
-
-            # 1000 steps
-            # noise_schedule = torch.linspace(0.000001, 0.01, 1000).cuda()
-            # 3steps
-            # noise_schedule = [9.0000e-05, 9.0000e-03, 6.0000e-01]
-            # 4steps
-            # noise_schedule = [3.4282e-04, 2.5216e-03, 2.2660e-02, 7.0000e-01]
-            # noise_schedule = [3.2176e-04, 2.5743e-03, 2.5376e-02, 7.0414e-01]
-            noise_schedule = [3.6701e-07, 1.7032e-05, 7.908e-04, 7.6146e-01]
-            # 8steps
-            # noise_schedule = [6.689325005027058e-07, 1.0033881153503899e-05, 0.00015496854030061513,
-            #                   0.002387222135439515, 0.035597629845142365, 0.3681158423423767, 0.4735414385795593, 0.5]
-
-            # 3steps
-            # noise_schedule = torch.load('noise_schedule/3steps_0.54,0.70_PESQ3.68.ns')
-            # 4steps
-            # noise_schedule = torch.load('noise_schedule/4steps_0.54,0.70_PESQ4.05.ns')
-            # 6steps
-            # noise_schedule = torch.load('noise_schedule/6steps_0.27,0.90_PESQ4.05.ns')
-
-            if isinstance(noise_schedule, list):
-                noise_schedule = torch.FloatTensor(noise_schedule).cuda()
+        noise_schedule = hparams['noise_schedule']
+        if isinstance(noise_schedule, list):
+            noise_schedule = torch.FloatTensor(noise_schedule).cuda()
 
         audio_length = mels.shape[-1] * hparams["hop_size"]
         # generate using DDPM reverse process

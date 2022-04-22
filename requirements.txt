@@ -1,0 +1,39 @@
+torch>=1.6.0
+pyworld
+matplotlib
+librosa==0.8.0
+tqdm
+pandas
+numba==0.48.0
+numpy==1.16.4
+requests
+scipy==1.3
+sympy
+PyYAML==5.3.1
+tensorboardX
+pillow
+pyloudnorm
+setuptools>=41.0.0
+g2p_en
+resemblyzer
+webrtcvad
+tensorboard==2.6.0
+scikit-learn==0.21.3
+scikit-image==0.16.2
+pypinyin==0.42.0
+textgrid
+jiwer
+pycwt
+PyWavelets
+praat-parselmouth==0.3.3
+jieba
+g2pM
+einops
+pytorch_memlab
+libtmux
+chardet
+
+# [music lib]
+# miditoolkit==0.1.7
+# music21==5.7.2
+# pypianoroll==0.5.3
