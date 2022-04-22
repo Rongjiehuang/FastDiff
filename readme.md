@@ -1,6 +1,6 @@
 # FastDiff: A Fast Conditional Diffusion Model for High-Quality Speech Synthesis
 
-<p style="text-align: center;"> <img src="assets/Demo.gif" alt="drawing" style="width:400px; "/> </p>
+<div align=center> <img src="assets/Demo.gif" alt="drawing" style="width:400px; "/> </div>
 
 
 #### Rongjie Huang, Max W. Y. Lam, Jun Wang, Dan Su, Dong Yu, Yi Ren, Zhou Zhao
