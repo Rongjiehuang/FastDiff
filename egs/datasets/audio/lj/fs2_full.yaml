@@ -1,0 +1,4 @@
+base_config: ./fs2.yaml
+task_cls: tasks.tts.fs2_full.Fs2FullTask
+mel_mix_loss: none
+mix_num: 0

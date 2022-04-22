@@ -1,0 +1,9 @@
+base_config: egs/egs_bases/singing/melgan.yaml
+datasets: [
+    'xiaoma#',
+]
+binary_data_dir: 'data/binary/xiaoma1004_all_wav'
+num_spk: 100
+use_spk_embed: false
+generator_params:
+  use_pitch_embed: true

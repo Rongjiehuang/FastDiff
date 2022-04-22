@@ -1,0 +1,6 @@
+base_config:
+  - egs/egs_bases/tts/tacotron2.yaml
+  - ./base_text2mel.yaml
+lr: 0.001
+clip_grad_norm: 1.0
+max_sentences: 64

@@ -1,0 +1,13 @@
+base_config:
+  - egs/egs_bases/tts/fs2.yaml
+  - egs/egs_bases/tts/base_zh.yaml
+raw_data_dir: 'data/raw/thchs30'
+processed_data_dir: 'data/processed/thchs30'
+binary_data_dir: 'data/binary/thchs30'
+pre_align_cls: egs.datasets.audio.thchs30.pre_align.Thchs30PreAlign
+
+use_spk_id: true
+num_spk: 100
+test_num: 200
+binarization_args:
+  shuffle: true

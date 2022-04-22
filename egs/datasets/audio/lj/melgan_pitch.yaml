@@ -1,0 +1,3 @@
+base_config: ./melgan.yaml
+generator_params:
+  use_pitch_embed: true

@@ -1,0 +1,8 @@
+base_config:
+  - egs/egs_bases/tts/fs2.yaml
+  - egs/egs_bases/tts/base_zh.yaml
+raw_data_dir: 'data/raw/biaobei_mix'
+processed_data_dir: 'data/processed/biaobei_mix_zh'
+binary_data_dir: 'data/binary/biaobei_mix_zh'
+pre_align_cls: egs.datasets.audio.biaobei_mix_zh.pre_align.BiaobeiMixZhPreAlign
+test_num: 200

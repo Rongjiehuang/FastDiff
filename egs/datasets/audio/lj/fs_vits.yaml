@@ -1,0 +1,28 @@
+base_config:
+  - egs/egs_bases/tts/fs2_adv.yaml
+  - egs/egs_bases/tts/vocoder/hifigan.yaml
+  - ./base_mel2wav.yaml
+task_cls: tasks.tts.fs_vits.FSVITSTask
+binary_data_dir: 'data/binary/ljspeech_t2w'
+binarization_args:
+  with_wav: true
+  with_align: true
+  with_txt: true
+
+use_pitch_embed: false
+encoder_type: rel_fft
+## fvae
+latent_size: 16
+fvae_kernel_size: 5
+fvae_enc_n_layers: 8
+fvae_dec_n_layers: 4
+# prior flow
+use_prior_glow: true
+prior_glow_hidden: 64
+glow_kernel_size: 3
+prior_glow_n_blocks: 4
+
+# training and eval
+frames_multiple: 4
+lambda_kl: 1.0
+max_tokens: 40000

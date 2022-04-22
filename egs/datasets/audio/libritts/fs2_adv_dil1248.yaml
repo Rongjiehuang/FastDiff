@@ -1,0 +1,4 @@
+base_config: ./fs2_adv.yaml
+decoder_type: conv
+dec_dilations: [ 1, 2, 4, 8, 1, 2, 4, 8, 1 ] # for conv decoder
+layers_in_block: 1

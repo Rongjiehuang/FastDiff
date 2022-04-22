@@ -1,0 +1,5 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/hifigan.yaml
+  - ./pwg.yaml
+upsample_rates: [ 8,4,2,2 ]
+upsample_kernel_sizes: [ 16,8,4,4 ]

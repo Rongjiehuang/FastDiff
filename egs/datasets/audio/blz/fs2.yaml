@@ -1,0 +1,6 @@
+base_config: egs/egs_bases/tts/fs2.yaml
+raw_data_dir: 'data/raw/bilizzard'
+processed_data_dir: 'data/processed/blz'
+binary_data_dir: 'data/binary/blz'
+pre_align_cls: egs.datasets.audio.blz.pre_align.BlzPreAlign
+test_num: 94

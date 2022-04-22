@@ -1,0 +1,7 @@
+base_config: egs/egs_bases/tts/vocoder/pwg.yaml
+raw_data_dir: 'data/raw/thchs30'
+processed_data_dir: 'data/processed/thchs30'
+binary_data_dir: 'data/binary/thchs30_wav'
+num_spk: 200
+generator_params:
+  kernel_size: 5

@@ -1,0 +1,50 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/pwg.yaml
+  - egs/egs_bases/tts/base_mel2wav.yaml
+  - egs/datasets/audio/lj/pwg.yaml
+
+raw_data_dir: 'data/raw/LJSpeech'
+processed_data_dir: 'data/processed/LJSpeech'
+binary_data_dir: 'data/binary/LJSpeech'
+
+binarization_args:
+  with_f0: false
+
+task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
+
+# data
+num_spk: 400
+max_samples: 102400
+aux_context_window: 0
+max_sentences: 20
+
+# training
+num_sanity_val_steps: -1
+max_updates: 1000000
+lr: 2e-4
+weight_decay: 0
+
+# SynGrad
+audio_channels: 1
+inner_channels: 32
+cond_channels: 80
+upsample_ratios: [8, 8, 4]
+lvc_layers_each_block: 4
+lvc_kernel_size: 3
+kpnet_hidden_channels: 64
+kpnet_conv_size: 3
+dropout: 0.0
+diffusion_step_embed_dim_in: 128
+diffusion_step_embed_dim_mid: 512
+diffusion_step_embed_dim_out: 512
+use_weight_norm: True
+
+# Diffusion
+T: 1000
+beta_0: 0.000001
+beta_T: 0.01
+
+noise_schedule: ''
+test_input_dir: '' # 'wavs' # wav->wav infer
+test_mel_dir: '' # 'mels' # mel->wav infer
+use_wav: false # mel->wav infer

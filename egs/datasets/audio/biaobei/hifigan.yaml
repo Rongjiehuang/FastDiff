@@ -1,0 +1,3 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/hifigan.yaml
+binary_data_dir: 'data/binary/biaobei_wav'

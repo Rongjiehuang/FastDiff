@@ -1,0 +1,8 @@
+base_config: egs/egs_bases/tts/vocoder/pwg.yaml
+processed_data_dir: 'data/processed/aishell3,data/processed/biaobei,data/processed/biaobei_mix_zh,data/processed/didispeech,data/processed/thchs30'
+binary_data_dir: 'data/binary/aishell_bb_didi_thchs_wav'
+binarization_args:
+  shuffle: true
+num_spk: 99999
+generator_params:
+  kernel_size: 3

@@ -1,0 +1,3 @@
+base_config: egs/egs_bases/tts/vocoder/hifigan.yaml
+processed_data_dir: 'data/processed/aishell3,data/processed/biaobei,data/processed/biaobei_mix_zh,data/processed/didispeech,data/processed/thchs30'
+binary_data_dir: 'data/binary/aishell_bb_didi_thchs_wav'

@@ -1,0 +1,2 @@
+base_config: egs/egs_bases/tts/fslat_bert.yaml
+binary_data_dir: 'data/binary/hifitts_bert'

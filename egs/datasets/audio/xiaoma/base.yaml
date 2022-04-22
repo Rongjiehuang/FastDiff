@@ -1,0 +1,15 @@
+raw_data_dir: 'data/raw/xiaoma1004_short'
+processed_data_dir: 'data/processed/xiaoma1004_all'
+binary_data_dir: 'data/binary/xiaoma1004_all'
+num_spk: 100
+datasets: [
+  'biaobei',
+  'thchs30',
+  'aishell3',
+  'didispeech',
+  'xiaoma#',
+]
+test_prefixes: [
+  'xiaoma#0514#女_2_1-分手快乐',
+]
+vocoder_ckpt: 'checkpoints/0620_emmulti_pwg_1'

@@ -1,0 +1,3 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/univnet.yaml
+  - ./base_mel2wav.yaml

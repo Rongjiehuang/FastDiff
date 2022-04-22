@@ -1,0 +1,45 @@
+raw_data_dir: 'data/raw/emsingers0728_short'
+processed_data_dir: 'data/processed/emsingers0728_all'
+binary_data_dir: 'data/binary/emsingers0728_all'
+datasets: [
+  'biaobei',
+  'thchs30',
+  'aishell3',
+  'didispeech',
+
+  'cuilingxiao#',
+  'fanyitao#',
+  'FYT#',
+  'gaojiayang#',
+  'hongyin#',
+  'JH#',
+  'lifanghang#',
+  'liujincheng#',
+  'luxiyu#',
+  'LZS#',
+  'pantaiyi#',
+  'puyusheng#',
+  'SBS#',
+  'xumiaoyi#',
+  'xurunbo#',
+  'yangkai#',
+  'yubohan#',
+  'huxue#',
+  'ZCJ#',
+  'yinshihui#',
+]
+test_prefixes:
+  - cuilingxiao#0202#一直一直爱
+  - cuilingxiao#0202#丁香花
+  - fanyitao#0202#一个人想着一个人
+  - fanyitao#0202#一期一会
+  - yubohan#0209#一天到晚游泳的鱼
+  - yubohan#0209#下一个天亮
+  - puyusheng#0502#一个人
+  - puyusheng#0502#一如年少模样
+  - lifanghang#0502#一千个伤心的理由
+  - lifanghang#0502#一半
+  - hongyin#0301#七里香
+  - hongyin#0301#乌克丽丽
+vocoder_ckpt: 'checkpoints/0620_emmulti_pwg_1'
+#vocoder_ckpt: 'checkpoints/1005_empwgk7_2'

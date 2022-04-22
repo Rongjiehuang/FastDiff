@@ -1,0 +1,4 @@
+base_config:
+  - egs/egs_bases/singing/wavernn.yaml
+  - ./base.yaml
+binary_data_dir: 'data/binary/emsingers0728_all_wav'

@@ -1,0 +1,7 @@
+base_config: egs/egs_bases/tts/base_zh.yaml
+processed_data_dir: 'data/processed/biaobei'
+binary_data_dir: 'data/binary/biaobei_wav'
+num_spk: 500
+generator_params:
+  use_nsf: false
+  kernel_size: 3

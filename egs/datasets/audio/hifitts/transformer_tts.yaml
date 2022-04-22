@@ -1,0 +1,4 @@
+base_config:
+  - egs/egs_bases/tts/transformer_tts.yaml
+  - ./base.yaml
+max_tokens: 20000

@@ -1,0 +1,7 @@
+base_config:
+  - egs/egs_bases/asr/transformer_asr.yaml
+  - ./base_text2mel.yaml
+task_cls: tasks.asr.transformer_asr.TransformerASRTask
+processed_data_dir: 'data/processed/libritts'
+binary_data_dir: 'data/binary/libritts'
+max_valid_sentences: 1

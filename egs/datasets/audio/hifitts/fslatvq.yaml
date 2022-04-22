@@ -1,0 +1,5 @@
+base_config:
+  - egs/egs_bases/tts/fslatvq.yaml
+  - ./base.yaml
+max_frames: 2000
+nVQ: 64

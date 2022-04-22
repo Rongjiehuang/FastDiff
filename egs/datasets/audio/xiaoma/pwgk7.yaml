@@ -1,0 +1,3 @@
+base_config: ./pwg.yaml
+generator_params:
+  kernel_size: 7

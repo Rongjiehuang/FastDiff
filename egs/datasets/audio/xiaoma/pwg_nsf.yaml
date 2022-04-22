@@ -1,0 +1,4 @@
+base_config: ./pwg.yaml
+use_mel_loss: true
+generator_params:
+  use_nsf: true

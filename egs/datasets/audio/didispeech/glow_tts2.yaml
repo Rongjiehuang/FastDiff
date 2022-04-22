@@ -1,0 +1,4 @@
+base_config: ./glow_tts.yaml
+task_cls: tasks.tts.glow_tts.glow_tts2_task.GlowTTS2Task
+max_tokens: 20000
+use_pitch_embed: false

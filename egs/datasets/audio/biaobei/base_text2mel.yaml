@@ -1,0 +1,11 @@
+base_config: egs/egs_bases/tts/base_zh.yaml
+raw_data_dir: 'data/raw/biaobei'
+processed_data_dir: 'data/processed/biaobei'
+binary_data_dir: 'data/binary/biaobei'
+binarization_args:
+  trim_eos_bos: true
+pre_align_cls: egs.datasets.audio.biaobei.pre_align.BiaobeiPreAlign
+use_pitch_embed: false
+test_num: 200
+vocoder: vocoders.hifigan.HifiGAN
+vocoder_ckpt: 'checkpoints/0427_hifigan_bb_1'

@@ -1,0 +1,5 @@
+base_config: egs/egs_bases/asr/base.yaml
+raw_data_dir: 'data/raw/LibriSpeech'
+processed_data_dir: 'data/processed/librispeech'
+binary_data_dir: 'data/binary/librispeech'
+pre_align_cls: egs.datasets.audio.librispeech.pre_align.LibrispeechPreAlign

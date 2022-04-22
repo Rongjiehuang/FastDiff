@@ -1,0 +1,3 @@
+base_config: ./glow_tts.yaml
+n_blocks_dec: 24
+max_tokens: 24000

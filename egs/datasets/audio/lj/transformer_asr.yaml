@@ -1,0 +1,4 @@
+# task
+base_config: egs/egs_bases/asr/transformer_asr.yaml
+task_cls: tasks.asr.transformer_asr.TransformerASRTask
+max_valid_sentences: 1

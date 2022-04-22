@@ -1,0 +1,19 @@
+base_config: egs/egs_bases/singing/seg_taco.yaml
+raw_data_dir: 'data/raw/xiaoma1004_long'
+processed_data_dir: 'data/processed/xiaoma1004_long'
+binary_data_dir: 'data/binary/xiaoma1004_long'
+seg_out_dir: 'data/raw/xiaoma1004_short'
+load_ckpt: 'checkpoints/1001_segtaco_2'
+datasets: [
+    'xiaoma',
+    'biaobei',
+    'thchs30',
+    'aishell3',
+    'didispeech',
+]
+short_datasets: [
+    'biaobei',
+    'thchs30',
+    'aishell3',
+    'didispeech',
+]

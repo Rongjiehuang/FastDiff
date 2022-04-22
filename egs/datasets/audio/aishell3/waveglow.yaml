@@ -1,0 +1,6 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/waveglow.yaml
+  - ./pwg.yaml
+audio_sample_rate: 16000
+fmin: 0  # Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
+fmax: 8000  # To be increased/reduced depending on data.

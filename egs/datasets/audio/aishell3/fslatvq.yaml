@@ -1,0 +1,20 @@
+base_config:
+  - egs/egs_bases/tts/fslatvq.yaml
+  - ./base_text2mel.yaml
+test_ids: []
+raw_data_dir: 'data/raw/AISHELL-3'
+processed_data_dir: 'data/processed/aishell3'
+binary_data_dir: 'data/binary/aishell3_word'
+pre_align_cls: egs.datasets.audio.aishell3.pre_align.AiShell3PreAlign
+binarization_args:
+  shuffle: true
+  with_spk_embed: false
+  with_f0: false
+use_spk_id: true
+num_spk: 220
+test_num: 200
+N_PROC: 48
+max_frames: 2000
+max_tokens: 20000
+vocoder: pwg
+vocoder_ckpt: checkpoints/0519_pwg_libritts_1

@@ -1,0 +1,4 @@
+base_config:
+  - egs/egs_bases/tts/vocoder/hifigan.yaml
+  - ./base.yaml
+binary_data_dir: 'data/binary/hifitts_wav'

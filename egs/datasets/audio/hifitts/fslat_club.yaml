@@ -1,0 +1,4 @@
+base_config: ./hifitts.yaml
+task_cls: tasks.tts.fs_latent.fs_latent_club_task.FastSpeechLatentClubTask
+mi_weight: 0.01
+num_sanity_val_steps: 0

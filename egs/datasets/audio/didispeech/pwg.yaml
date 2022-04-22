@@ -1,0 +1,9 @@
+base_config: egs/egs_bases/tts/vocoder/pwg.yaml
+raw_data_dir: 'data/raw/didispeech'
+processed_data_dir: 'data/processed/didispeech'
+binary_data_dir: 'data/binary/didispeech_wav'
+num_spk: 500
+generator_params:
+  kernel_size: 5
+  use_pitch_embed: true
+use_mel_loss: true

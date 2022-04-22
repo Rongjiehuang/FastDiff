@@ -1,0 +1,5 @@
+base_config:
+  - egs/egs_bases/singing/pwg.yaml
+  - ./base.yaml
+binary_data_dir: 'data/binary/emsingers0728_all_wav'
+max_updates: 1000000

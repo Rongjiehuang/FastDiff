@@ -1,0 +1,27 @@
+base_config: egs/egs_bases/asr/transformer_asr.yaml
+binary_data_dir: 'data/binary/libritts_asr'
+binarization_args:
+  shuffle: false
+  with_txt: true
+  with_wav: false
+  with_align: false
+  with_spk_embed: false
+  with_f0: false
+  with_f0cwt: false
+binarizer_cls: data_gen.asr.asr_binarize.ASRBinarizer
+model_type: trans
+decoder_hidden_size: 256
+decoder_rnn_dim: 256
+p_attention_dropout: 0.05
+p_decoder_dropout: 0.05
+attention_rnn_dim: 256
+attention_dim: 128
+attention_location_n_filters: 16
+attention_location_kernel_size: 15
+
+enc_ffn_kernel_size: 31
+encoder_hidden_size: 144
+hidden_size: 256
+enc_layers: 12
+dec_layers: 2
+max_tokens: 40000

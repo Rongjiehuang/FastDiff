@@ -1,0 +1,4 @@
+base_config:
+  - egs/egs_bases/tts/tacotron2.yaml
+  - ./base.yaml
+max_tokens: 20000

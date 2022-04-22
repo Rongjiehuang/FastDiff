@@ -1,0 +1,15 @@
+base_config:
+  - egs/egs_bases/tts/fs2s.yaml
+  - ./base_mel2wav.yaml
+binary_data_dir: 'data/binary/ljspeech_t2w'
+binarization_args:
+  with_wav: true
+  with_align: true
+
+num_test_samples: 20
+mel_loss: l1
+use_pitch_embed: true
+use_uv: true
+use_energy_embed: false
+predictor_grad: 0.01
+test_num: 523

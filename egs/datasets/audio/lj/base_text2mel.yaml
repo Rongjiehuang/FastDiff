@@ -1,0 +1,16 @@
+raw_data_dir: 'data/raw/LJSpeech-1.1'
+processed_data_dir: 'data/processed/ljspeech'
+binary_data_dir: 'data/binary/ljspeech'
+pre_align_cls: egs.datasets.audio.lj.pre_align.LJPreAlign
+binarization_args:
+  with_spk_embed: false
+
+pitch_type: frame
+mel_loss: "ssim:0.5|l1:0.5"
+num_test_samples: 20
+test_ids: [ 68, 70, 74, 87, 110, 172, 190, 215, 231, 294,
+            316, 324, 402, 422, 485, 500, 505, 508, 509, 519 ]
+use_energy_embed: false
+test_num: 523
+vocoder: vocoders.hifigan.HifiGAN
+vocoder_ckpt: 'checkpoints/0414_hifi_lj_1'

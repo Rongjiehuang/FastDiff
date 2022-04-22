@@ -1,0 +1,9 @@
+base_config:
+  - egs/egs_bases/tts/fslat.yaml
+  - ./base_text2mel.yaml
+test_ids: [ ]
+lambda_kl: 1.0
+bert_ckpt: checkpoints/0820_wordvqbert_2
+N_PROC: 48
+max_frames: 2000
+max_updates: 600000

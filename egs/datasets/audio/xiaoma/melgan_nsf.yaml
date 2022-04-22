@@ -1,0 +1,4 @@
+base_config: ./melgan.yaml
+generator_params:
+  use_nsf: true
+  use_pitch_embed: false

@@ -1,0 +1,7 @@
+base_config:
+  - egs/egs_bases/tts/fslat.yaml
+  - ./base.yaml
+use_bert: false
+bert_ckpt: checkpoints/0920_bert_hf_1
+max_frames: 2000
+max_updates: 400000

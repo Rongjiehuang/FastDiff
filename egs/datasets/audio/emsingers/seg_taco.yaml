@@ -1,0 +1,42 @@
+base_config: egs/egs_bases/singing/seg_taco.yaml
+raw_data_dir: 'data/raw/emsingers0728_long'
+processed_data_dir: 'data/processed/emsingers0728_long'
+binary_data_dir: 'data/binary/emsingers0728_long'
+seg_out_dir: 'data/raw/emsingers0728_short'
+#load_ckpt: 'checkpoints/1001_segtaco_2'
+datasets: [
+    'cuilingxiao',
+    'fanyitao',
+    'FYT',
+    'gaojiayang',
+    'hongyin',
+    'huxue',
+    'JH',
+    'lifanghang',
+    'liujincheng',
+    'luxiyu',
+    'LZS',
+    'pantaiyi',
+    'puyusheng',
+    'SBS',
+    'xumiaoyi',
+    'xurunbo',
+    'yangkai',
+    'yinshihui',
+    'yubohan',
+    'ZCJ',
+  # speech
+    'biaobei',
+    'thchs30',
+    'aishell3',
+    'didispeech',
+]
+denoise_datasets: [
+    'yinshihui',
+]
+short_datasets: [
+    'biaobei',
+    'thchs30',
+#    'aishell3',
+    'didispeech',
+]

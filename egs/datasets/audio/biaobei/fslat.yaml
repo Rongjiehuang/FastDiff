@@ -1,0 +1,17 @@
+base_config:
+  - egs/egs_bases/tts/fslat.yaml
+  - ./base_text2mel.yaml
+############
+# VAE
+############
+vae_dur_grad: 1.0
+vae_enc_hidden_size: 64
+vae_ph_conder_layers: 1
+vae_word_conder_layers: 1
+latent_size: 64
+prior_flow:
+  hidden_size: 64
+  kernel_size: 3
+  n_layers: 4
+  n_blocks: 2
+  word_conder_layers: 0

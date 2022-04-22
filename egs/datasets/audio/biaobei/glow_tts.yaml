@@ -1,0 +1,7 @@
+base_config:
+  - egs/egs_bases/tts/glow_tts.yaml
+  - ./base_text2mel.yaml
+glow_hidden: 192
+n_block_layers: 4
+n_blocks_dec: 12
+use_gt_dur: true

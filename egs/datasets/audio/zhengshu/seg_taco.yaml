@@ -1,0 +1,21 @@
+base_config: egs/egs_bases/singing/seg_taco.yaml
+raw_data_dir: 'data/raw/zhengshu0311'
+processed_data_dir: 'data/processed/zhengshu0311_long'
+binary_data_dir: 'data/binary/zhengshu0311_long'
+seg_out_dir: 'data/raw/zhengshu0311_short'
+load_ckpt: ''
+datasets: [
+    '声乐女歌手',
+    '声乐男歌手',
+    '女高音',
+    '普通男声',
+    '男低音',
+    'biaobei',
+    'thchs30',
+    'didispeech',
+]
+short_datasets: [
+    'biaobei',
+    'thchs30',
+    'didispeech',
+]

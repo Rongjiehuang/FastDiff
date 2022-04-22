@@ -1,0 +1,22 @@
+base_config: ./base.yaml
+task_cls: tasks.vocoder.waveglow.WaveGlowTask
+
+max_samples: 20480
+max_sentences: 28
+max_valid_sentences: 1
+max_updates: 2000000
+lr: 0.0001
+num_valid_plots: 5
+num_test_samples: 5
+waveglow_config:
+  n_stride: 8 # n_stride = hopsize // n_group
+  n_mel_channels: 80
+  n_flows: 12
+  n_group: 32
+  n_early_every: 4
+  n_early_size: 4
+  WN_config:
+    n_layers: 8
+    n_channels: 256
+    kernel_size: 3
+

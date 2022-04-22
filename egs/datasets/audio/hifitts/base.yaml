@@ -1,0 +1,13 @@
+raw_data_dir: 'data/raw/hifi-tts'
+processed_data_dir: 'data/processed/hifitts'
+binary_data_dir: 'data/binary/hifitts'
+pre_align_cls: egs.datasets.audio.hifitts.pre_align.HifiTTSPreAlign
+pre_align_args:
+  sox_to_wav: true
+binarization_args:
+  shuffle: true
+use_spk_id: true
+test_num: 200
+num_spk: 50
+vocoder: univnet
+vocoder_ckpt: checkpoints/0911_univnet_hf_1

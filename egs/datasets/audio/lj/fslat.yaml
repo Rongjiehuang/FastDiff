@@ -1,0 +1,8 @@
+base_config:
+  - egs/egs_bases/tts/fslat.yaml
+  - ./base_text2mel.yaml
+binary_data_dir: 'data/binary/ljspeech_word'
+binarization_args:
+  with_spk_embed: false
+latent_size: 32
+max_updates: 160000

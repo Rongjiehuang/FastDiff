@@ -1,0 +1,13 @@
+base_config:
+  - egs/egs_bases/tts/fslatvq.yaml
+  - ./base_text2mel.yaml
+test_ids: [ ]
+binarization_args:
+  shuffle: true
+  with_spk_embed: false
+  with_f0: false
+N_PROC: 48
+c_word_encoder: 256
+bert_ckpt: checkpoints/0820_wordvqbert_2
+use_spk_id: true
+max_frames: 1800

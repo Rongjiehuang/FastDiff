@@ -1,0 +1,7 @@
+base_config:
+  - egs/egs_bases/tts/fs2.yaml
+  - ./base_text2mel.yaml
+binary_data_dir: 'data/binary/ljspeech_linear'
+vocoder: GLLinear
+audio_num_mel_bins: 513
+num_valid_plots: 0

@@ -1,0 +1,27 @@
+base_config: ./base.yaml
+task_cls: tasks.vocoder.wavernn.WaveRNNTask
+
+###########################################################
+#                WaveRNN ARCHITECTURE SETTING             #
+###########################################################
+voc_mode: 'RAW'                    # either 'RAW' (softmax on raw bits) or 'MOL' (sample from mixture of logistics)
+voc_upsample_factors: [4,4,4,4]   # NB - this needs to correctly factorise hop_length
+voc_rnn_dims: 512
+voc_fc_dims: 512
+voc_compute_dims: 128
+voc_res_out_dims: 128
+voc_res_blocks: 10
+
+# Training
+voc_pad: 2                         # this will pad the input so that the resnet can 'see' wider than input length
+use_pitch_embed: false
+
+###########
+# train and eval
+###########
+max_samples: 2048
+max_sentences: 64
+max_valid_sentences: 1
+max_updates: 2000000
+lr: 0.0001
+clip_grad_norm: 4              # set to None if no gradient clipping needed

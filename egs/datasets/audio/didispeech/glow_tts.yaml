@@ -1,0 +1,7 @@
+base_config: ./fs2.yaml
+task_cls: tasks.tts.glow_tts.glow_tts_task.GlowTTSTask
+glow_hidden: 192
+n_block_layers: 4
+n_blocks_dec: 12
+max_tokens: 24000
+max_updates: 300000

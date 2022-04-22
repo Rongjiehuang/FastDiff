@@ -1,0 +1,13 @@
+base_config:
+  - egs/egs_bases/tts/fs2.yaml
+  - egs/egs_bases/tts/base_zh.yaml
+raw_data_dir: 'data/raw/didispeech'
+processed_data_dir: 'data/processed/didispeech'
+binary_data_dir: 'data/binary/didispeech'
+pre_align_cls: egs.datasets.audio.didispeech.pre_align.DidiSpeechPreAlign
+
+use_spk_id: true
+num_spk: 500
+test_num: 200
+binarization_args:
+  shuffle: true

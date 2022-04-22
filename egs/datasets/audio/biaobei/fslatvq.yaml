@@ -1,0 +1,5 @@
+base_config:
+  - egs/egs_bases/tts/fslatvq.yaml
+  - ./base_text2mel.yaml
+lambda_commit: 0.3
+max_tokens: 30000

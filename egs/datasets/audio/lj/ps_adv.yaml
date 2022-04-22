@@ -1,0 +1,4 @@
+base_config:
+  - egs/egs_bases/tts/ps_adv.yaml
+  - ./base_text2mel.yaml
+binary_data_dir: 'data/binary/ljspeech_word'

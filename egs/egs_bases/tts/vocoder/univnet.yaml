@@ -1,0 +1,33 @@
+base_config: ./base.yaml
+task_cls: tasks.vocoder.unvinet.UnivNetTask
+
+# optm
+lr: 0.0001
+adam_b1: 0.5
+adam_b2: 0.9
+stft_lamb: 2.5
+
+# gen
+gen:
+  noise_dim: 64
+  channel_size: 32 # 32 or 16
+  dilations: [ 1, 3, 9, 27 ]
+  strides: [ 8, 8, 4 ]
+  lReLU_slope: 0.2
+  kpnet_conv_size: 3
+mpd:
+  periods: [ 2,3,5,7,11 ]
+  kernel_size: 5
+  stride: 3
+  use_spectral_norm: False
+  lReLU_slope: 0.2
+mrd:
+  resolutions: [ [ 1024, 120, 600 ], [ 2048, 240, 1200 ], [ 512, 50, 240 ] ] # (filter_length, hop_length, win_length)
+  use_spectral_norm: False
+  lReLU_slope: 0.2
+
+max_samples: 16384
+max_sentences: 32
+
+aux_context_window: 0 # Context window size for auxiliary feature.
+max_updates: 2000000

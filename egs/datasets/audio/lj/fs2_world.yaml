@@ -1,0 +1,5 @@
+base_config:
+  - ./fs2.yaml
+binary_data_dir: data/binary/ljspeech_world
+vocoder: world
+audio_num_mel_bins: 62

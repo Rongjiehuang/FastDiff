@@ -1,0 +1,3 @@
+base_config: ./transformer_asr.yaml
+hidden_size: 512
+max_tokens: 20000

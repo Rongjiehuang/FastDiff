@@ -1,0 +1,13 @@
+base_config: ./fs2.yaml
+task_cls: tasks.tts.bvae_tts.bvae_tts_task.BVAETTSTask
+
+# bvae hparams
+n_blocks: 4
+n_layers: 3
+kernel_size: 5
+downsample_ratio: 1
+lr: 0.1
+symbols_embedding_dim: 256
+hidden_dim: 256
+warmup_updates: 100
+kl_warmup_steps: 60000
