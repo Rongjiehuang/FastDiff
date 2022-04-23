@@ -113,7 +113,7 @@ class Conv1d1x1(Conv1d):
                                         kernel_size=1, padding=0,
                                         dilation=1, bias=bias)
 
-class DBlock(nn.Module):
+class DiffusionDBlock(nn.Module):
   def __init__(self, input_size, hidden_size, factor):
     super().__init__()
     self.factor = factor
@@ -138,8 +138,8 @@ class DBlock(nn.Module):
     return x + residual
 
 
-class LVCBlock(torch.nn.Module):
-    ''' the location-variable convolutions
+class TimeAware_LVCBlock(torch.nn.Module):
+    ''' time-aware location-variable convolutions
     '''
     def __init__(self,
                  in_channels,
@@ -188,7 +188,7 @@ class LVCBlock(torch.nn.Module):
 
 
     def forward(self, data):
-        ''' forward propagation of the location-variable convolutions.
+        ''' forward propagation of the time-aware location-variable convolutions.
         Args:
             x (Tensor): the input sequence (batch, in_channels, in_length)
             c (Tensor): the conditioning sequence (batch, cond_channels, cond_length)
@@ -255,7 +255,7 @@ class LVCBlock(torch.nn.Module):
 
 
 class KernelPredictor(torch.nn.Module):
-    ''' Kernel predictor for the location-variable convolutions
+    ''' Kernel predictor for the time-aware location-variable convolutions
     '''
 
     def __init__(self,
@@ -341,65 +341,3 @@ class KernelPredictor(torch.nn.Module):
                                    self.conv_out_channels,
                                    cond_length)
         return kernels, bias
-
-
-class AFLfilter(torch.nn.Module):
-    """Residual block module in WaveNet."""
-
-    def __init__(self,
-                 kernel_size=3,
-                 in_channels=64,
-                 residual_channels=64,
-                 aux_channels=80,
-                 dropout=0.0,
-                 dilation=1,
-                 bias=True,
-                 ):
-        """Initialize AFL filter module.
-
-        Args:
-            kernel_size (int): Kernel size of dilation convolution layer.
-            residual_channels (int): Number of channels for residual connection.
-            skip_channels (int): Number of channels for skip connection.
-            aux_channels (int): Local conditioning channels i.e. auxiliary input dimension.
-            dropout (float): Dropout probability.
-            dilation (int): Dilation factor.
-            bias (bool): Whether to add bias parameter in convolution layers.
-
-        """
-        super(AFLfilter, self).__init__()
-        self.dropout = dropout
-        # no future time stamps available
-        assert (kernel_size - 1) % 2 == 0, "Not support even number kernel size."
-        padding = (kernel_size - 1) // 2 * dilation
-
-        # dilation conv
-        self.conv = Conv1d(in_channels, residual_channels, kernel_size,
-                           padding=padding, dilation=dilation, bias=bias)
-
-        self.conv_out = Conv1d(aux_channels, residual_channels, kernel_size=3,
-                               padding=1, bias=True)
-        self.conv_skip = Conv1d(aux_channels, residual_channels,
-                               kernel_size=3, padding=1, bias=True)
-
-    def forward(self, x, c):
-        """Calculate forward propagation.
-
-        Args:
-            x (Tensor): Input tensor (B, residual_channels, T).
-            c (Tensor): Local conditioning auxiliary tensor (B, aux_channels, T).
-
-        Returns:
-            Tensor: Output tensor for residual connection (B, residual_channels, T).
-            Tensor: Output tensor for skip connection (B, skip_channels, T).
-
-        """
-        x = F.dropout(x, p=self.dropout, training=self.training)
-        x = self.conv(x)
-
-        a = self.conv_out(c)
-        b = self.conv_skip(c)
-
-        x = torch.tanh(x+a) * torch.sigmoid(x+b)
-
-        return x

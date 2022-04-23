@@ -149,8 +149,8 @@ class VocoderDataset(BaseDataset):
             p_batch, f0_batch = None, None
 
         # make input noise signal batch tensor
-        if self.hparams['use_wav']:z_batch = torch.randn(y_batch.size())  # (B, 1, T)
-        else:z_batch=[]
+        if self.hparams['use_wav']: z_batch = torch.randn(y_batch.size())  # (B, 1, T)
+        else: z_batch=[]
         return {
             'z': z_batch,
             'mels': c_batch,

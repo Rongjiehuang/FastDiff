@@ -5,18 +5,18 @@
 
 #### Rongjie Huang, Max W. Y. Lam, Jun Wang, Dan Su, Dong Yu, Yi Ren, Zhou Zhao
 
-PyTorch Implementation of (IJCAI'22) [FastDiff: a conditional diffusion probabilistic model capable of generating high fidelity speech efficiently.](https://arxiv.org/abs/2204.09934).
+PyTorch Implementation of [FastDiff (IJCAI'22)](https://arxiv.org/abs/2204.09934): a conditional diffusion probabilistic model capable of generating high fidelity speech efficiently.
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2204.09934)
 [![GitHub Stars](https://img.shields.io/github/stars/Rongjiehuang/FastDiff?style=social)](https://github.com/Rongjiehuang/FastDiff)
-<a href="https://github.com/pytorch/fairseq/blob/main/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
+![visitors](https://visitor-badge.glitch.me/badge?page_id=Rongjiehuang/FastDiff)
 
 We provide our implementation and pretrained models as open source in this repository.
 
 Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 
 # News
-- April.22, 2021: We submitted **FastDiff** to Arxiv. The expected release time of the full version codes is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned! 
+- April.22, 2021: **FastDiff** accepted by IJCAI 2022. The expected release time of the full version codes is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned! 
 
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
@@ -35,6 +35,8 @@ Details of each folder are as in follows:
 | VCTK     | modules/FastDiff/config/FastDiff_libritts.yaml | No         | Coming  Soon   |
 | LibriTTS | modules/FastDiff/config/FastDiff_vctk.yaml     |  No        | Coming  Soon   |
 
+Put the checkpoints to `checkpoints/your_experiment_name/model_ckpt_steps_*.ckpt`
+
 ## Dependencies
 See requirements in `requirement.txt`:
 - [pytorch](https://github.com/pytorch/pytorch)==1.8.1
@@ -42,32 +44,29 @@ See requirements in `requirement.txt`:
 - [tacotron2](https://github.com/NVIDIA/tacotron2) (source included in this repo)
 
 ## Inference from wav file
-1. Make `test_files` directory and copy wav files into the directory.
+1. Make `wavs` directory and copy wav files into the directory.
 2. Run the following command.
 ```
-python tasks/run.py --config path/to/config  --exp_name [your experiment name] --infer --hparams='test_input_dir=wavs,use_wav=true'
+python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer --hparams='test_input_dir=wavs'
 ```
 
-Generated wav files are saved in `generated_files` by default.<br>
-You can change the path by adding `--output_dir` option.
-
+Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
 
 ## Inference for end-to-end speech synthesis
-1. Make `test_mel_files` directory and copy generated mel-spectrogram files into the directory.<br>
+1. Make `mels` directory and copy generated mel-spectrogram files into the directory.<br>
 You can generate mel-spectrograms using [Tacotron2](https://github.com/NVIDIA/tacotron2), 
 [Glow-TTS](https://github.com/jaywalnut310/glow-tts) and so forth.
 2. Run the following command.
 ```
-python tasks/run.py --config  --exp_name [your experiment name] --infer --hparams='test_input_dir=mels,use_wav=false'
+python tasks/run.py --config  --exp_name your_experiment_name --infer --hparams='test_mel_dir=mels,use_wav=False'
 ```
-Generated wav files are saved in `generated_files_from_mel` by default.<br>
-You can change the path by adding `--output_dir` option.
+Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
 
 
 # Train your own model
 
 ### I. Data Preparation and Configuraion ## 
-(Work in Progress)
+Work in Progress
 
 
 ### II. Training the Refinement Network

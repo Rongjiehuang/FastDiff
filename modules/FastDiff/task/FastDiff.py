@@ -2,7 +2,7 @@ import os
 
 import torch
 import utils
-from modules.FastDiff.models.FastDiff_model import FastDiff
+from modules.FastDiff.module.FastDiff_model import FastDiff
 from tasks.vocoder.vocoder_base import VocoderBaseTask
 from utils import audio
 from utils.hparams import hparams
@@ -59,7 +59,7 @@ class FastDiffTask(VocoderBaseTask):
 
     def test_step(self, sample, batch_idx):
         mels = sample['mels']
-        # y = sample['wavs']
+        y = sample['wavs']
         loss_output = {}
 
         noise_schedule = hparams['noise_schedule']
@@ -71,13 +71,13 @@ class FastDiffTask(VocoderBaseTask):
 
         y_ = sampling_given_noise_schedule(
             self.model, (1, 1, audio_length), self.diffusion_hyperparams, noise_schedule,
-            condition=mels, ddim=False, return_sequence=True)
+            condition=mels, ddim=False, return_sequence=False)
         gen_dir = os.path.join(hparams['work_dir'], f'generated_{self.trainer.global_step}_{hparams["gen_dir_name"]}')
         os.makedirs(gen_dir, exist_ok=True)
-        for idx, (wav_pred, item_name) in enumerate(zip(y_[-1], sample["item_name"])):
-            # wav_gt = wav_gt / wav_gt.abs().max()
+        for idx, (wav_pred, wav_gt, item_name) in enumerate(zip(y_, y, sample["item_name"])):
+            wav_gt = wav_gt / wav_gt.abs().max()
             wav_pred = wav_pred / wav_pred.abs().max()
-            # audio.save_wav(wav_gt.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_gt.wav', hparams['audio_sample_rate'])
+            audio.save_wav(wav_gt.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_gt.wav', hparams['audio_sample_rate'])
             audio.save_wav(wav_pred.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_pred.wav', hparams['audio_sample_rate'])
         return loss_output
         

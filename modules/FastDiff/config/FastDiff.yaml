@@ -8,15 +8,23 @@ processed_data_dir: 'data/processed/LJSpeech'
 binary_data_dir: 'data/binary/LJSpeech'
 
 binarization_args:
+  with_wav: true
+  with_spk_embed: false
+  with_align: false
+  with_word: false
+  with_txt: false
   with_f0: false
 
 task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
 
 # data
 num_spk: 400
-max_samples: 102400
+max_samples: 25600
 aux_context_window: 0
 max_sentences: 20
+test_input_dir: '' # 'wavs' # wav->wav infer
+test_mel_dir: '' # 'mels' # mel->wav infer
+use_wav: True # mel->wav infer
 
 # training
 num_sanity_val_steps: -1
@@ -24,7 +32,7 @@ max_updates: 1000000
 lr: 2e-4
 weight_decay: 0
 
-# SynGrad
+# FastDiff
 audio_channels: 1
 inner_channels: 32
 cond_channels: 80
@@ -43,8 +51,5 @@ use_weight_norm: True
 T: 1000
 beta_0: 0.000001
 beta_T: 0.01
-
 noise_schedule: [3.6701e-07, 1.7032e-05, 7.908e-04, 7.6146e-01]
-test_input_dir: '' # 'wavs' # wav->wav infer
-test_mel_dir: '' # 'mels' # mel->wav infer
-use_wav: false # mel->wav infer
+

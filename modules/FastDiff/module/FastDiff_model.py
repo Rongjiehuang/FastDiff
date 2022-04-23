@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 import logging
-from modules.FastDiff.module.modules import DBlock, LVCBlock
+from modules.FastDiff.module.modules import DiffusionDBlock, TimeAware_LVCBlock
 from modules.FastDiff.module.util import calc_diffusion_step_embedding
 
 def swish(x):
@@ -47,7 +47,7 @@ class FastDiff(nn.Module):
         cond_hop_length = 1
         for n in range(self.lvc_block_nums):
             cond_hop_length = cond_hop_length * upsample_ratios[n]
-            lvcb = LVCBlock(
+            lvcb = TimeAware_LVCBlock(
                 in_channels=inner_channels,
                 cond_channels=cond_channels,
                 upsample_ratio=upsample_ratios[n],
@@ -60,8 +60,7 @@ class FastDiff(nn.Module):
                 noise_scale_embed_dim_out=diffusion_step_embed_dim_out
             )
             self.lvc_blocks += [lvcb]
-            self.downsample.append(DBlock(inner_channels, inner_channels, upsample_ratios[self.lvc_block_nums-n-1]))
-
+            self.downsample.append(DiffusionDBlock(inner_channels, inner_channels, upsample_ratios[self.lvc_block_nums-n-1]))
 
 
         # define output layers
