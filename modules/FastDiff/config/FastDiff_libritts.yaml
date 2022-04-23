@@ -44,4 +44,4 @@ use_weight_norm: True
 T: 1000
 beta_0: 0.000001
 beta_T: 0.01
-noise_schedule: [3.6701e-07, 1.7032e-05, 7.908e-04, 7.6146e-01]
+noise_schedule: [3.2176e-04, 2.5743e-03, 2.5376e-02, 7.0414e-01]
