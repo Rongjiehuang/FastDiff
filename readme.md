@@ -20,6 +20,14 @@ Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 # News
 - April.22, 2021: **FastDiff** accepted by IJCAI 2022. The expected release time of the full version codes (Pre-trained models, Colab, Hugging Face) is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned! 
 
+# Status
+- [x] Release init codes
+- [ ] Release pre-trained models
+- [ ] Colab and hugging Face
+- [ ] Release baseline codes (including HIFI-GAN, Parallel WaveGAN, Diffwave, WaveGrad, etc)
+- [ ] programmatic inference API
+- [ ] PyPI package
+
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
 
@@ -28,7 +36,6 @@ To try on your own dataset, simply clone this repo in your local machine provide
 ## Pretrained Model
 
 You can also use pretrained models we provide.
-Download pretrained models
 Details of each folder are as in follows:
 
 | Dataset  | Config                                         | Model          | 
@@ -45,6 +52,10 @@ See requirements in `requirement.txt`:
 - [librosa](https://github.com/librosa/librosa)
 - [tacotron2](https://github.com/NVIDIA/tacotron2) (source included in this repo)
 
+## Multi-GPU
+By default, this implementation uses as many GPUs in parallel as returned by `torch.cuda.device_count()`. 
+You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` environment variable before running the training module.
+
 ## Inference from wav file
 1. Make `wavs` directory and copy wav files into the directory.
 2. Run the following command.
@@ -54,7 +65,7 @@ python tasks/run.py --config path/to/config  --exp_name your_experiment_name --i
 
 Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
 
-## Inference for end-to-end speech synthesis (In Progress)
+## Inference for end-to-end speech synthesis
 1. Make `mels` directory and copy generated mel-spectrogram files into the directory.<br>
 You can generate mel-spectrograms using [Tacotron2](https://github.com/NVIDIA/tacotron2), 
 [Glow-TTS](https://github.com/jaywalnut310/glow-tts) and so forth.
@@ -86,10 +97,10 @@ python tasks/run.py --config path/to/config  --exp_name your_experiment_name --r
 ```
 
 ### Training the Noise Predictor Network (Optional)
-Given a well-trained score network, we start training the scheduling network (noise predictor in paper), following [BDDM](https://github.com/tencent-ailab/bddm).
+Given a well-trained refinement network, we start training the scheduling network (noise predictor in paper), following [BDDM](https://github.com/tencent-ailab/bddm).
 
 ### Noise Scheduling (Optional)
-- Given a well-trained FastDiff (Refinement and Scheduling Network), we can then perform noise scheduling to select the best noise schedule suitable to your needs (trade-off between performance v.s. step number), following [BDDM](https://github.com/tencent-ailab/bddm). 
+- Given a well-trained FastDiff (refinement and scheduling network), we can then perform noise scheduling to select the best noise schedule suitable to your needs (trade-off between performance v.s. step number), following [BDDM](https://github.com/tencent-ailab/bddm). 
 - Put the derived `noise_schedule` in config file
 
 Or you can use our pre-derived `noise_schedule` in config file
