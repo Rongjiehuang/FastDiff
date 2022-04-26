@@ -38,11 +38,11 @@ To try on your own dataset, simply clone this repo in your local machine provide
 You can also use pretrained models we provide.
 Details of each folder are as in follows:
 
-| Dataset  | Config                                         | Model          | 
-|----------|------------------------------------------------|----------------|
-| LJSpeech | modules/FastDiff/config/FastDiff.yaml          | Coming  Soon   |
-| VCTK     | modules/FastDiff/config/FastDiff_libritts.yaml | Coming  Soon   |
-| LibriTTS | modules/FastDiff/config/FastDiff_vctk.yaml     | Coming  Soon   |
+| Dataset  | Config                                         | Model            | 
+|----------|------------------------------------------------|------------------|
+| LJSpeech | `modules/FastDiff/config/FastDiff.yaml`          | [Coming  Soon]() |
+| VCTK     | `modules/FastDiff/config/FastDiff_libritts.yaml` | [Coming  Soon]() |
+| LibriTTS | `modules/FastDiff/config/FastDiff_vctk.yaml`     | [Coming  Soon]() |
 
 Put the checkpoints to `checkpoints/your_experiment_name/model_ckpt_steps_*.ckpt`
 
@@ -120,11 +120,11 @@ This implementation uses parts of the code from the following Github repos:
 as described in our code.
 
 ## Citations ##
-
+If you find this code useful in your research, please consider citing:
 ```
 @article{huang2022fastdiff,
   title={FastDiff: A Fast Conditional Diffusion Model for High-Quality Speech Synthesis},
-  author={Huang, Rongjie and Max W. Y. Lam and Wang, Jun and Su, Dan and Yu, Dong and Ren, Yi and Zhao, Zhou},
+  author={Huang, Rongjie and Lam, Max WY and Wang, Jun and Su, Dan and Yu, Dong and Ren, Yi and Zhao, Zhou},
   journal={arXiv preprint arXiv:2204.09934},
   year={2022}
 }
