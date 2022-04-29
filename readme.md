@@ -28,13 +28,13 @@ To try on your own dataset, simply clone this repo in your local machine provide
 You can also use pretrained models we provide.
 Details of each folder are as in follows:
 
-| Dataset  | Config                                         | Model            | 
+| Dataset  | Config                                         | Pretrained Model | 
 |----------|------------------------------------------------|------------------|
 | LJSpeech | `modules/FastDiff/config/FastDiff.yaml`          | [Coming  Soon]() |
 | LibriTTS | `modules/FastDiff/config/FastDiff_libritts.yaml` | [Coming  Soon]() |
 | VCTK     | `modules/FastDiff/config/FastDiff_vctk.yaml`     | [Coming  Soon]() |
 
-Put the checkpoints to `checkpoints/your_experiment_name/model_ckpt_steps_*.ckpt`
+Put the checkpoints in `checkpoints/your_experiment_name/model_ckpt_steps_*.ckpt`
 
 ## Dependencies
 See requirements in `requirement.txt`:
@@ -51,7 +51,7 @@ You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` enviro
 2. Set `N` for reverse sampling, which is a trade off between quality and speed. 
 3. Run the following command.
 ```bash
-python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer --hparams='test_input_dir=wavs,N=$N'
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer --hparams='test_input_dir=wavs,N=$N'
 ```
 
 Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
@@ -63,7 +63,7 @@ You can generate mel-spectrograms using [Tacotron2](https://github.com/NVIDIA/ta
 2. Set `N` for reverse sampling, which is a trade off between quality and speed. 
 3. Run the following command.
 ```bash
-python tasks/run.py --config  --exp_name your_experiment_name --infer --hparams='test_mel_dir=mels,use_wav=False,N=$N'
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config  --exp_name your_experiment_name --infer --hparams='test_mel_dir=mels,use_wav=False,N=$N'
 ```
 Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
 
@@ -72,18 +72,18 @@ Generated wav files are saved in `checkpoints/your_experiment_name/` by default.
 
 ### Data Preparation and Configuraion ##
 1. Set `raw_data_dir`, `processed_data_dir`, `binary_data_dir` in the config file
-2. Download dataset to `raw_data_dir`
+2. Download dataset to `raw_data_dir`. Note: the dataset structure needs to follow `egs/datasets/audio/*/pre_align.py`, or you could rewrite `pre_align.py` according to your dataset.
 3. Preprocess Dataset 
 ```bash
-# Preprocess step: text and unify the file structure.
+# Preprocess step: unify the file structure.
 python data_gen/tts/bin/pre_align.py --config path/to/config
-# Binarization step: Binarize data for fast IO. You only need to rerun this line when running different task if you have `preprocess`ed and `align`ed the dataset before.
-CUDA_VISIBLE_DEVICES=0 python data_gen/tts/bin/binarize.py --config path/to/config
+# Binarization step: Binarize data for fast IO.
+CUDA_VISIBLE_DEVICES=$GPU python data_gen/tts/bin/binarize.py --config path/to/config
 ```
 
 ### Training the Refinement Network
 ```bash
-python tasks/run.py --config path/to/config  --exp_name your_experiment_name --reset
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --reset
 ```
 
 ### Training the Noise Predictor Network
@@ -97,7 +97,7 @@ Or you can use our pre-derived `noise_schedule` in config file
 ### Inference
 
 ```bash
-python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer
 ```
 
 
