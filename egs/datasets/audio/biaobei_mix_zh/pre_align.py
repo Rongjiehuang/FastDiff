@@ -1,8 +1,8 @@
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import re
 
 
-class BiaobeiMixZhPreAlign(BasePreAlign):
+class BiaobeiMixZhPreAlign(VocoderPreAlign):
     def meta_data(self):
         input_dir = self.raw_data_dir
         with open(f"{input_dir}/中文女生DB-6/CN/text.txt", encoding='utf-8') as f:

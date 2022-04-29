@@ -1,7 +1,7 @@
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 
 
-class LJPreAlign(BasePreAlign):
+class LJPreAlign(VocoderPreAlign):
     def meta_data(self):
         for l in open(f'{self.raw_data_dir}/metadata.csv').readlines():
             item_name, _, txt = l.strip().split("|")

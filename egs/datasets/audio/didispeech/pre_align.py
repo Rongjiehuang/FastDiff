@@ -1,10 +1,10 @@
 import os
 
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import glob
 
 
-class DidiSpeechPreAlign(BasePreAlign):
+class DidiSpeechPreAlign(VocoderPreAlign):
     def meta_data(self):
         txt_fns = sorted(glob.glob(f'{self.raw_data_dir}/SCRIPT/*.prosody'))
         txts = {}

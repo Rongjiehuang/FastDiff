@@ -178,10 +178,8 @@ class VocoderDataset(BaseDataset):
 
         for wav_fn in inp_wav_paths:
             item_name = wav_fn[len(test_input_dir) + 1:].replace("/", "_")
-            ph = txt = tg_fn = ''
-            encoder = None, None
             item = binarizer_cls.process_item(
-                item_name, ph, txt, tg_fn, wav_fn, spk_id, encoder, binarization_args)
+                item_name, wav_fn, binarization_args)
             items.append(item)
             sizes.append(item['len'])
         return items, sizes
@@ -201,10 +199,7 @@ class VocoderDataset(BaseDataset):
             mel_input = np.load(mel)
             mel_input = torch.FloatTensor(mel_input)
             item_name = mel[len(test_input_dir) + 1:].replace("/", "_")
-            ph = txt = tg_fn = ''
-            encoder = None, None
-            item = binarizer_cls.process_mel_item(
-                item_name, ph, txt, tg_fn, mel_input, None, spk_id, encoder, binarization_args)
+            item = binarizer_cls.process_mel_item(item_name, mel_input, None, binarization_args)
             items.append(item)
             sizes.append(item['len'])
         return items, sizes

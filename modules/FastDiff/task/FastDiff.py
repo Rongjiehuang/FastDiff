@@ -62,7 +62,33 @@ class FastDiffTask(VocoderBaseTask):
         y = sample['wavs']
         loss_output = {}
 
-        noise_schedule = hparams['noise_schedule']
+        if hparams['noise_schedule'] != '':
+            noise_schedule = hparams['noise_schedule']
+            if isinstance(noise_schedule, list):
+                noise_schedule = torch.FloatTensor(noise_schedule).cuda()
+        else:
+            # Select Schedule
+            reverse_step = int(hparams.get('N', 1000))
+            if reverse_step == 1000:
+                noise_schedule = torch.linspace(0.000001, 0.01, 1000).cuda()
+            elif reverse_step == 200:
+                noise_schedule = torch.linspace(0.0001, 0.02, 200).cuda()
+
+            # Below are schedules derived by Noise Predictor.
+            # We will release codes of noise predictor training process & noise scheduling process soon. Please Stay Tuned!
+            elif reverse_step == 8:
+                noise_schedule = [6.689325005027058e-07, 1.0033881153503899e-05, 0.00015496854030061513,
+                                 0.002387222135439515, 0.035597629845142365, 0.3681158423423767, 0.4735414385795593, 0.5]
+            elif reverse_step == 6:
+                noise_schedule = [1.7838445955931093e-06, 2.7984189728158526e-05, 0.00043231004383414984,
+                                  0.006634317338466644, 0.09357017278671265, 0.6000000238418579]
+            elif reverse_step == 4:
+                noise_schedule = [3.2176e-04, 2.5743e-03, 2.5376e-02, 7.0414e-01]
+            elif reverse_step == 3:
+                noise_schedule = [9.0000e-05, 9.0000e-03, 6.0000e-01]
+            else:
+                raise NotImplementedError
+
         if isinstance(noise_schedule, list):
             noise_schedule = torch.FloatTensor(noise_schedule).cuda()
 

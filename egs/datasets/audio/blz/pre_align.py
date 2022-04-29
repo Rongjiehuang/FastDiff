@@ -1,8 +1,8 @@
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import pandas as pd
 
 
-class BlzPreAlign(BasePreAlign):
+class BlzPreAlign(VocoderPreAlign):
     def meta_data(self):
         df = pd.read_csv(f'{self.raw_data_dir}/meta_data.csv')
         for r_idx, row in df.iterrows():

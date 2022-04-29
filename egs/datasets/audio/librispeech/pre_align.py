@@ -1,10 +1,10 @@
 import os
 
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import glob
 
 
-class LibrispeechPreAlign(BasePreAlign):
+class LibrispeechPreAlign(VocoderPreAlign):
     def meta_data(self):
         lj_raw_data_dir = 'data/raw/LJSpeech-1.1'
         for l in list(open(f'{lj_raw_data_dir}/metadata.csv').readlines())[600:]:

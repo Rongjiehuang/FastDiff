@@ -1,8 +1,8 @@
 import glob
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 
 
-class AiShell3PreAlign(BasePreAlign):
+class AiShell3PreAlign(VocoderPreAlign):
     def meta_data(self):
         wavfn2text = {}
 

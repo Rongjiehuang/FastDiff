@@ -1,8 +1,8 @@
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import re
 
 
-class BiaobeiPreAlign(BasePreAlign):
+class BiaobeiPreAlign(VocoderPreAlign):
     def meta_data(self):
         input_dir = self.raw_data_dir
         with open(f"{input_dir}/ProsodyLabeling/000001-010000.txt", encoding='utf-8') as f:

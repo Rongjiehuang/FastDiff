@@ -1,11 +1,11 @@
 import json
 import os
 
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import glob
 
 
-class HifiTTSPreAlign(BasePreAlign):
+class HifiTTSPreAlign(VocoderPreAlign):
     def meta_data(self):
         meta_fns = sorted(glob.glob(f'{self.raw_data_dir}/hi_fi_tts_v0/*_manifest_*.json'))
         for meta_fn in meta_fns:

@@ -1,9 +1,9 @@
-from data_gen.tts.base_pre_align import BasePreAlign
+from data_gen.tts.vocoder_pre_align import VocoderPreAlign
 import os
 import glob
 
 
-class Thchs30PreAlign(BasePreAlign):
+class Thchs30PreAlign(VocoderPreAlign):
     def meta_data(self):
         wav_fns = sorted(glob.glob(f'{self.raw_data_dir}/data/*.wav'))
         for wav_fn in wav_fns:
