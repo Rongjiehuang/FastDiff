@@ -30,7 +30,7 @@ Details of each folder are as in follows:
 
 | Dataset                                   | Config                                         | Pretrained Model | 
 |-------------------------------------------|------------------------------------------------|------------------|
-| LJSpeech                                  | `modules/FastDiff/config/FastDiff.yaml`          | [Coming  Soon]() |
+| LJSpeech                                  | `modules/FastDiff/config/FastDiff.yaml`          | [OneDrive](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=BF0nOF)     |
 | LibriTTS                                  | `modules/FastDiff/config/FastDiff_libritts.yaml` | [Coming  Soon]() |
 | VCTK                                      | `modules/FastDiff/config/FastDiff_vctk.yaml`     | [Coming  Soon]() |
 
