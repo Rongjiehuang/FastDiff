@@ -15,8 +15,10 @@ We provide our implementation and pretrained models as open source in this repos
 
 Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 
-# News
-- April.22, 2021: **FastDiff** accepted by IJCAI 2022. The expected release time of the full version codes (including pre-trained models, more datasets, and more neural vocoders) is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned! 
+## News
+- April.22, 2021: **FastDiff** accepted by IJCAI 2022. The expected release time of the full version codes (including pre-trained models, more datasets, and more neural vocoders) is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned!
+- June.21, 2022: The LJSpeech checkpoint and demo code are provided.
+
 
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
@@ -69,6 +71,7 @@ CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config  --exp_name your_experime
 ```
 Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
 
+Note: If you find the output wav noisy, it's likely because of the mel-preprocessing mismatch between the acoustic and vocoder models. Please tackle this mismatch or use the provided validated acoustic model,  and now we have: [PortaSpeech](https://huggingface.co/spaces/NATSpeech/PortaSpeech/tree/main)
 
 # Train your own model
 
