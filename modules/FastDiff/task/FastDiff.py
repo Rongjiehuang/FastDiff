@@ -100,11 +100,19 @@ class FastDiffTask(VocoderBaseTask):
             condition=mels, ddim=False, return_sequence=False)
         gen_dir = os.path.join(hparams['work_dir'], f'generated_{self.trainer.global_step}_{hparams["gen_dir_name"]}')
         os.makedirs(gen_dir, exist_ok=True)
-        for idx, (wav_pred, wav_gt, item_name) in enumerate(zip(y_, y, sample["item_name"])):
-            wav_gt = wav_gt / wav_gt.abs().max()
-            wav_pred = wav_pred / wav_pred.abs().max()
-            audio.save_wav(wav_gt.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_gt.wav', hparams['audio_sample_rate'])
-            audio.save_wav(wav_pred.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_pred.wav', hparams['audio_sample_rate'])
+
+        if len(y) == 0:
+            # Inference from mel
+            for idx, (wav_pred, item_name) in enumerate(zip(y_, sample["item_name"])):
+                wav_pred = wav_pred / wav_pred.abs().max()
+                audio.save_wav(wav_pred.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_pred.wav',
+                               hparams['audio_sample_rate'])
+        else:
+            for idx, (wav_pred, wav_gt, item_name) in enumerate(zip(y_, y, sample["item_name"])):
+                wav_gt = wav_gt / wav_gt.abs().max()
+                wav_pred = wav_pred / wav_pred.abs().max()
+                audio.save_wav(wav_gt.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_gt.wav', hparams['audio_sample_rate'])
+                audio.save_wav(wav_pred.view(-1).cpu().float().numpy(), f'{gen_dir}/{item_name}_pred.wav', hparams['audio_sample_rate'])
         return loss_output
         
     def build_optimizer(self, model):
