@@ -38,7 +38,7 @@ Details of each folder are as in follows:
 
 More supported datasets are coming soon.
 
-Put the checkpoints in `checkpoints/your_experiment_name/model_ckpt_steps_*.ckpt`
+Put the checkpoints in `checkpoints/$your_experiment_name/model_ckpt_steps_*.ckpt`
 
 ## Dependencies
 See requirements in `requirement.txt`:
@@ -50,15 +50,26 @@ See requirements in `requirement.txt`:
 By default, this implementation uses as many GPUs in parallel as returned by `torch.cuda.device_count()`. 
 You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` environment variable before running the training module.
 
+## Inference for text-to-speech synthesis
+1. Download LJSpeech checkpoint and put it in `checkpoint/FastDiff/model_ckpt_steps_*.ckpt `
+2. Specify the input `$text`, and an int-type index `$model_index` to choose the TTS model. `0`(Portaspeech, Ren et al), `1`(FastSpeech 2, Ren et al), or `2`(DiffSpeech, Liu et al).
+3. Set `N` for reverse sampling, which is a trade off between quality and speed. 
+4. Run the following command.
+```bash
+CUDA_VISIBLE_DEVICES=$GPU python egs/demo_tts.py --N $N --text $text --model $model_index 
+```
+Generated wav files are saved in `checkpoints/FastDiff/` by default.<br>
+
+
 ## Inference from wav file
 1. Make `wavs` directory and copy wav files into the directory.
 2. Set `N` for reverse sampling, which is a trade off between quality and speed. 
 3. Run the following command.
 ```bash
-CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer --hparams='test_input_dir=wavs,N=$N'
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config  --exp_name $your_experiment_name --infer --hparams='test_input_dir=wavs,N=$N'
 ```
 
-Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
+Generated wav files are saved in `checkpoints/$your_experiment_name/` by default.<br>
 
 ## Inference for end-to-end speech synthesis
 1. Make `mels` directory and copy generated mel-spectrogram files into the directory.<br>
@@ -67,9 +78,9 @@ You can generate mel-spectrograms using [Tacotron2](https://github.com/NVIDIA/ta
 2. Set `N` for reverse sampling, which is a trade off between quality and speed. 
 3. Run the following command.
 ```bash
-CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config  --exp_name your_experiment_name --infer --hparams='test_mel_dir=mels,use_wav=False,N=$N'
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config --exp_name $your_experiment_name --infer --hparams='test_mel_dir=mels,use_wav=False,N=$N'
 ```
-Generated wav files are saved in `checkpoints/your_experiment_name/` by default.<br>
+Generated wav files are saved in `checkpoints/$your_experiment_name/` by default.<br>
 
 Note: If you find the output wav noisy, it's likely because of the mel-preprocessing mismatch between the acoustic and vocoder models. Please tackle this mismatch or use the provided validated acoustic model,  and now we have: [PortaSpeech](https://huggingface.co/spaces/NATSpeech/PortaSpeech/tree/main)
 
@@ -81,14 +92,14 @@ Note: If you find the output wav noisy, it's likely because of the mel-preproces
 3. Preprocess Dataset 
 ```bash
 # Preprocess step: unify the file structure.
-python data_gen/tts/bin/pre_align.py --config path/to/config
+python data_gen/tts/bin/pre_align.py --config $path/to/config
 # Binarization step: Binarize data for fast IO.
-CUDA_VISIBLE_DEVICES=$GPU python data_gen/tts/bin/binarize.py --config path/to/config
+CUDA_VISIBLE_DEVICES=$GPU python data_gen/tts/bin/binarize.py --config $path/to/config
 ```
 
 ### Training the Refinement Network
 ```bash
-CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --reset
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config  --exp_name $your_experiment_name --reset
 ```
 
 ### Training the Noise Predictor Network
@@ -100,7 +111,7 @@ Coming Soon, and you can use our pre-derived noise schedule in this time.
 ### Inference
 
 ```bash
-CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config path/to/config  --exp_name your_experiment_name --infer
+CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config  --exp_name $your_experiment_name --infer
 ```
 
 
