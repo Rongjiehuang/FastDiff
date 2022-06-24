@@ -22,7 +22,7 @@ def synthesize(choice, N, text):
 
     # FastDiff
     print('-----------------------Start neural vocoding using FastDiff-----------------------')
-    os.system(f"CUDA_VISIBLE_DEVICES=0 python tasks/run.py --config checkpoints/FastDiff/config.yaml --exp_name FastDiff --infer --hparams='test_mel_dir=PortaSpeech/infer_out/,use_wav=False,N={N}'")
+    os.system(f"CUDA_VISIBLE_DEVICES=0 python tasks/run.py --config modules/FastDiff/config/FastDiff.yaml --exp_name FastDiff --infer --hparams='test_mel_dir=PortaSpeech/infer_out/,use_wav=False,N={N}'")
 
 
 if __name__ == '__main__':
