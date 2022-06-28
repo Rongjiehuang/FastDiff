@@ -27,7 +27,7 @@ def synthesize(choice, N, text):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Train Parallel WaveGAN (See detail in parallel_wavegan/bin/train.py).")
+        description="Below provide the TTS pipeline in LJSpeech dataset.")
     parser.add_argument("--N", type=str, default='4', help="denoising steps")
     parser.add_argument("--text", "-o", type=str, help="input text",
                         default="the invention of movable metal letters in the middle of the fifteenth century may justly be considered as the invention of the art of printing.")
