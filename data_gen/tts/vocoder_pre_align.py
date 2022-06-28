@@ -59,68 +59,30 @@ class VocoderPreAlign:
         args = []
         meta_data = []
         for idx, inp_args in enumerate(tqdm(self.meta_data(), desc='Load meta data')):
-            if len(inp_args) == 4:
-                inp_args = [*inp_args, {}]
             meta_data.append(inp_args)
-            item_name, wav_fn, txt_or_fn, spk, others = inp_args
+            item_name, wav_fn = inp_args
             args.append([
-                idx, item_name, wav_fn, others, processed_dir, self.pre_align_args
+                idx, item_name, wav_fn, processed_dir, self.pre_align_args
             ])
         item_names = [x[1] for x in args]
         assert len(item_names) == len(set(item_names)), 'Key `item_name` should be Unique.'
 
         for inp_args, res in zip(tqdm(meta_data, 'Processing'), chunked_multiprocess_run(self.process_job, args)):
-            item_name, wav_fn, txt_or_fn, spk, others = inp_args
+            item_name, wav_fn = inp_args
             if res is None:
                 print(f"| Skip {wav_fn}.")
                 continue
             wav_fn = res
-            meta_df.append({
-                'item_name': item_name, 'wav_fn': wav_fn, 'others': json.dumps(others)})
+            meta_df.append({'item_name': item_name, 'wav_fn': wav_fn})
 
 
         # save to csv
         meta_df = pd.DataFrame(meta_df)
         meta_df.to_csv(f"{processed_dir}/metadata_phone.csv")
 
-    @staticmethod
-    def process_text(txt_processor, txt_raw, pre_align_args):
-        phs, txt = txt_processor.process(txt_raw, pre_align_args)
-        phs = [p.strip() for p in phs if p.strip() != ""]
-
-        # remove sil phoneme in head and tail
-        while len(phs) > 0 and is_sil_phoneme(phs[0]):
-            phs = phs[1:]
-        while len(phs) > 0 and is_sil_phoneme(phs[-1]):
-            phs = phs[:-1]
-        phs = ["<BOS>"] + phs + ["<EOS>"]
-        phs_ = []
-        for i in range(len(phs)):
-            if len(phs_) == 0 or not is_sil_phoneme(phs[i]) or not is_sil_phoneme(phs_[-1]):
-                phs_.append(phs[i])
-            elif phs_[-1] == '|' and is_sil_phoneme(phs[i]) and phs[i] != '|':
-                phs_[-1] = phs[i]
-        cur_word = []
-        phs_for_align = []
-        phs_for_dict = set()
-        for p in phs_:
-            if is_sil_phoneme(p):
-                if len(cur_word) > 0:
-                    phs_for_align.append('_'.join(cur_word))
-                    phs_for_dict.add(' '.join(cur_word))
-                    cur_word = []
-                if p not in txt_processor.sp_phonemes():
-                    phs_for_align.append('SIL')
-            else:
-                cur_word.append(p)
-        phs = " ".join(phs_)
-        phs_for_align = " ".join(phs_for_align)
-        return phs, phs_for_dict, phs_for_align, txt
-
     @classmethod
-    def process_job(cls, idx, item_name, wav_fn, others, processed_dir, pre_align_args):
+    def process_job(cls, idx, item_name, wav_fn, processed_dir, pre_align_args):
         try:
-            # phs, phs_for_dict, phs_for_align, txt = cls.process_text(g2p_func, txt_raw, pre_align_args)
             wav_fn = cls.process_wav(idx, item_name, wav_fn, processed_dir, pre_align_args)
             if wav_fn is None:
                 return None

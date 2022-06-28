@@ -6,12 +6,12 @@ import glob
 
 class LibrittsPreAlign(VocoderPreAlign):
     def meta_data(self):
-        wav_fns = sorted(glob.glob(f'{self.raw_data_dir}/*/*/*/*.wav'))
+        wav_fns = sorted(glob.glob(f'{self.raw_data_dir}/*/*/*.wav'))
         for wav_fn in wav_fns:
             item_name = os.path.basename(wav_fn)[:-4]
-            txt_fn = f'{wav_fn[:-4]}.normalized.txt'
+            txt = 'Not Needed.'
             spk = item_name.split("_")[0]
-            yield item_name, wav_fn, (self.load_txt, txt_fn), spk
+            yield item_name, wav_fn, txt, spk
 
 
 if __name__ == "__main__":

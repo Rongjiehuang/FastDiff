@@ -8,7 +8,7 @@ processed_data_dir: 'data/processed/LJSpeech_FastDiff'
 binary_data_dir: 'data/binary/LJSpeech_FastDiff'
 
 binarizer_cls: data_gen.tts.vocoder_binarizer.VocoderBinarizer
-pre_align_cls: egs.datasets.audio.lj.pre_align.LJPreAlign
+pre_align_cls: egs.datasets.audio.pre_align.PreAlign
 task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
 binarization_args:
   with_wav: true

@@ -8,7 +8,7 @@ processed_data_dir: 'data/processed/VCTK'
 binary_data_dir: 'data/binary/VCTK'
 
 binarizer_cls: data_gen.tts.vocoder_binarizer.VocoderBinarizer
-pre_align_cls: egs.datasets.audio.vctk.pre_align.VCTKPreAlign
+pre_align_cls: egs.datasets.audio.pre_align.PreAlign
 task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
 binarization_args:
   with_wav: true
@@ -20,7 +20,7 @@ binarization_args:
 
 # data
 num_spk: 400
-max_samples: 102400
+max_samples: 20480
 aux_context_window: 0
 max_sentences: 10
 test_input_dir: '' # 'wavs' # wav->wav infer
@@ -33,7 +33,7 @@ max_updates: 1000000
 lr: 2e-4
 weight_decay: 0
 
-# SynGrad
+# FastDiff
 audio_channels: 1
 inner_channels: 32
 cond_channels: 80

@@ -59,7 +59,7 @@ You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` enviro
 CUDA_VISIBLE_DEVICES=$GPU python egs/demo_tts.py --N $N --text $text --model $model_index 
 ```
 Generated wav files are saved in `checkpoints/FastDiff/` by default.<br>
-
+Note: For better quality, it's recommended to finetune the FastDiff model.
 
 ## Inference from wav file
 1. Make `wavs` directory and copy wav files into the directory.
@@ -82,7 +82,7 @@ CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config --exp_nam
 ```
 Generated wav files are saved in `checkpoints/$your_experiment_name/` by default.<br>
 
-Note: If you find the output wav noisy, it's likely because of the mel-preprocessing mismatch between the acoustic and vocoder models. Please tackle this mismatch or use the provided validated acoustic model,  and now we have: [PortaSpeech](https://huggingface.co/spaces/NATSpeech/PortaSpeech/tree/main)
+Note: If you find the output wav noisy, it's likely because of the mel-preprocessing mismatch between the acoustic and vocoder models.
 
 # Train your own model
 
