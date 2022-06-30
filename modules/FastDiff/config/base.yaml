@@ -1,16 +1,7 @@
-base_config:
-  - egs/egs_bases/tts/vocoder/pwg.yaml
-  - egs/egs_bases/tts/base_mel2wav.yaml
-  - egs/datasets/audio/lj/pwg.yaml
-
-raw_data_dir: 'data/raw/LJSpeech-1.1'
-processed_data_dir: 'data/processed/LJSpeech_FastDiff'
-#binary_data_dir: 'data/binary/LJSpeech_Taco'
-binary_data_dir: /apdcephfs/private_nlphuang/preprocess/AdaGrad/data/binary/LJSpeech_Taco
-
 binarizer_cls: data_gen.tts.vocoder_binarizer.VocoderBinarizer
-pre_align_cls: egs.datasets.audio.lj.pre_align.LJPreAlign
+pre_align_cls: egs.datasets.audio.pre_align.PreAlign
 task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
+
 binarization_args:
   with_wav: true
   with_spk_embed: false
