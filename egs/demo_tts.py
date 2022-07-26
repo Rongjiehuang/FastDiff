@@ -9,16 +9,18 @@ def synthesize(choice, N, text):
     infer = ['ps_flow', 'fs2_orig', 'ds']
 
     # Install dependencies
-    print('-----------------------Start installing dependencies-----------------------')
-    os.system('git clone https://huggingface.co/spaces/NATSpeech/PortaSpeech.git')
-    os.system('cp -r egs/tts/* PortaSpeech/inference/tts/')
-    os.system(
-        f'wget https://huggingface.co/spaces/NATSpeech/PortaSpeech/resolve/main/checkpoints/{exp[choice]}/model_ckpt_steps_{steps[choice]}.ckpt')
-    os.system(f'mv model_ckpt_steps_406000.ckpt PortaSpeech/checkpoints/{exp[choice]}')
+    if not os.path.exists('PortaSpeech/'):
+        print('-----------------------Start installing dependencies-----------------------')
+        os.system('git clone https://huggingface.co/spaces/NATSpeech/PortaSpeech.git')
+        os.system('cp -r egs/tts/* PortaSpeech/inference/tts/')
+    if not os.path.exists(f'PortaSpeech/checkpoints/{exp[choice]}'):
+        os.system(
+            f'wget https://huggingface.co/spaces/NATSpeech/PortaSpeech/resolve/main/checkpoints/{exp[choice]}/model_ckpt_steps_{steps[choice]}.ckpt')
+        os.system(f'mv model_ckpt_steps_406000.ckpt PortaSpeech/checkpoints/{exp[choice]}')
 
     # TTS
     print(f'-----------------------Start text-to-spectrogram synthesis using {exp[choice]}-----------------------')
-    os.system(f" cd PortaSpeech && CUDA_VISIBLE_DEVICES=0 python  inference/tts/{infer[choice]}.py --exp_name {exp[choice]} --config checkpoints/{exp[choice]}/config.yaml --hparams='processed_data_dir={text}'")
+    os.system(f" cd PortaSpeech && CUDA_VISIBLE_DEVICES=0 python  inference/tts/{infer[choice]}.py --exp_name {exp[choice]} --hparams='processed_data_dir={text.replace(',', '/')}'")
 
     # FastDiff
     print('-----------------------Start neural vocoding using FastDiff-----------------------')

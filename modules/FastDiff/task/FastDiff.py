@@ -68,7 +68,11 @@ class FastDiffTask(VocoderBaseTask):
                 noise_schedule = torch.FloatTensor(noise_schedule).cuda()
         else:
             # Select Schedule
-            reverse_step = int(hparams.get('N', 1000))
+            try:
+                reverse_step = int(hparams.get('N'))
+            except:
+                print('Please specify $N (the number of revere iterations) in config file. Now denoise with 4 iterations.')
+                reverse_step = 4
             if reverse_step == 1000:
                 noise_schedule = torch.linspace(0.000001, 0.01, 1000).cuda()
             elif reverse_step == 200:
