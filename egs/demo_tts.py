@@ -13,7 +13,9 @@ def synthesize(choice, N, text):
         print('-----------------------Start installing dependencies-----------------------')
         os.system('git clone https://huggingface.co/spaces/NATSpeech/PortaSpeech.git')
         os.system('cp -r egs/tts/* PortaSpeech/inference/tts/')
-    if not os.path.getsize(f'PortaSpeech/checkpoints/{exp[choice]}') < 1000:
+
+    ckpt = f'PortaSpeech/checkpoints/{exp[choice]}/model_ckpt_steps_{steps[choice]}.ckpt'
+    if not os.path.exists(ckpt) or os.path.getsize(ckpt) < 1000:
         os.system(
             f'wget https://huggingface.co/spaces/NATSpeech/PortaSpeech/resolve/main/checkpoints/{exp[choice]}/model_ckpt_steps_{steps[choice]}.ckpt')
         os.system(f'mv model_ckpt_steps_406000.ckpt PortaSpeech/checkpoints/{exp[choice]}')

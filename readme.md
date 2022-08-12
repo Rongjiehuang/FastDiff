@@ -16,9 +16,10 @@ We provide our implementation and pretrained models as open source in this repos
 Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 
 ## News
-- April.22, 2021: **FastDiff** accepted by IJCAI 2022. The expected release time of the full version codes (including pre-trained models, more datasets, and more neural vocoders) is at the IJCAI-2022 conference (before July. 2022). Please star us and stay tuned!
+- April.22, 2021: **FastDiff** accepted by IJCAI 2022.
 - June.21, 2022: The LJSpeech checkpoint and demo code are provided.
-
+- August.12, 2022: The VCTK/LibriTTS checkpoints are provided.
+- August.12, 2022: We will release follow-up work [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub]((https://github.com/Rongjiehuang/ProDiff)), where we futher optimized the speed-and-quality trade-off.
 
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
@@ -27,14 +28,14 @@ To try on your own dataset, simply clone this repo in your local machine provide
 
 ## Support Datasets and Pretrained Models
 
-You can also use pretrained models we provide.
+You can also use pretrained models we provide [here](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=b8vPiA).
 Details of each folder are as in follows:
 
-| Dataset                                   | Config                                         | Pretrained Model | 
-|-------------------------------------------|------------------------------------------------|------------------|
-| LJSpeech                                  | `modules/FastDiff/config/FastDiff.yaml`          | [OneDrive](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=BF0nOF)     |
-| LibriTTS                                  | `modules/FastDiff/config/FastDiff_libritts.yaml` | [Coming  Soon]() |
-| VCTK                                      | `modules/FastDiff/config/FastDiff_vctk.yaml`     | [Coming  Soon]() |
+| Dataset   | Config                                           | 
+|-----------|--------------------------------------------------|
+| LJSpeech  | `modules/FastDiff/config/FastDiff.yaml`          | 
+| LibriTTS  | `modules/FastDiff/config/FastDiff_libritts.yaml` | 
+| VCTK      | `modules/FastDiff/config/FastDiff_vctk.yaml`     |                                                                                                                             |
 
 More supported datasets are coming soon.
 
@@ -102,11 +103,11 @@ CUDA_VISIBLE_DEVICES=$GPU python data_gen/tts/bin/binarize.py --config $path/to/
 CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config  --exp_name $your_experiment_name --reset
 ```
 
-### Training the Noise Predictor Network
-Coming Soon.
+### Training the Noise Predictor Network (Optional)
+Refer to [Bilateral Denoising Diffusion Models (BDDMs)](https://github.com/tencent-ailab/bddm).
 
-### Noise Scheduling
-Coming Soon, and you can use our pre-derived noise schedule in this time.
+### Noise Scheduling (Optional)
+You can use our pre-derived noise schedule in this time, or refer to [Bilateral Denoising Diffusion Models (BDDMs)](https://github.com/tencent-ailab/bddm).
 
 ### Inference
 
@@ -134,5 +135,6 @@ If you find this code useful in your research, please consider citing:
 ```
 
 ## Disclaimer ##
-This is not an officially supported Tencent product.
+- This is not an officially supported Tencent product.
 
+- Any organization or individual is prohibited from using any technology mentioned in this paper to generate someone's speech without his/her consent, including but not limited to government leaders, political figures, and celebrities. If you do not comply with this item, you could be in violation of copyright laws.
