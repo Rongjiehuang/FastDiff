@@ -19,7 +19,7 @@ Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 - April.22, 2021: **FastDiff** accepted by IJCAI 2022.
 - June.21, 2022: The LJSpeech checkpoint and demo code are provided.
 - August.12, 2022: The VCTK/LibriTTS checkpoints are provided.
-- August.12, 2022: We will release follow-up work [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub]((https://github.com/Rongjiehuang/ProDiff)), where we futher optimized the speed-and-quality trade-off.
+- August.12, 2022: We will release follow-up work [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub](https://github.com/Rongjiehuang/ProDiff), where we futher optimized the speed-and-quality trade-off.
 
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
