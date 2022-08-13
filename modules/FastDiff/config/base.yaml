@@ -32,12 +32,30 @@ diffusion_step_embed_dim_mid: 512
 diffusion_step_embed_dim_out: 512
 use_weight_norm: True
 
+###########
 # Diffusion
+###########
 T: 1000
 beta_0: 0.000001
 beta_T: 0.01
 noise_schedule: ''
 N: ''
+
+
+###########
+# train and eval
+###########
+task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
+max_updates: 1000000 # max training steps
+max_samples: 25600 # audio length in training
+max_sentences: 20 # max batch size in training
+num_sanity_val_steps: -1
+max_valid_sentences: 1
+valid_infer_interval: 10000
+val_check_interval: 2000
+num_test_samples: 0
+num_valid_plots: 10
+
 
 #############
 # Stage 1 of data processing
@@ -72,21 +90,6 @@ binarization_args:
   trim_eos_bos: false
   reset_phone_dict: true
   reset_word_dict: true
-
-
-###########
-# train and eval
-###########
-task_cls: modules.FastDiff.task.FastDiff.FastDiffTask
-max_updates: 1000000 # max training steps
-max_samples: 25600 # audio length in training
-max_sentences: 20 # max batch size in training
-num_sanity_val_steps: -1
-max_valid_sentences: 1
-valid_infer_interval: 10000
-val_check_interval: 2000
-num_test_samples: 0
-num_valid_plots: 10
 
 
 ###########
