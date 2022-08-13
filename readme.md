@@ -88,8 +88,8 @@ Note: If you find the output wav noisy, it's likely because of the mel-preproces
 # Train your own model
 
 ### Data Preparation and Configuraion ##
-1. Set `raw_data_dir`, `processed_data_dir`, `binary_data_dir` in the config file
-2. Download dataset to `raw_data_dir`. Note: the dataset structure needs to follow `egs/datasets/audio/*/pre_align.py`, or you could rewrite `pre_align.py` according to your dataset.
+1. Set `raw_data_dir`, `processed_data_dir`, `binary_data_dir` in the config file. For custom dataset, please specify configurations of audio preprocessing in `modules/FastDiff/config/base.yaml`
+2. Download dataset to `raw_data_dir`. Note: the dataset structure needs to follow `egs/datasets/audio/*/pre_align.py`, or you could rewrite `pre_align.py` according to your dataset
 3. Preprocess Dataset 
 ```bash
 # Preprocess step: unify the file structure.
@@ -129,7 +129,16 @@ If you find this code useful in your research, please consider citing:
 @article{huang2022fastdiff,
   title={FastDiff: A Fast Conditional Diffusion Model for High-Quality Speech Synthesis},
   author={Huang, Rongjie and Lam, Max WY and Wang, Jun and Su, Dan and Yu, Dong and Ren, Yi and Zhao, Zhou},
-  journal={arXiv preprint arXiv:2204.09934},
+  booktitle = {Proceedings of the Thirty-First International Joint Conference on
+               Artificial Intelligence, {IJCAI-22}},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  year={2022}
+}
+
+@inproceedings{huang2022prodiff,
+  title={ProDiff: Progressive Fast Diffusion Model For High-Quality Text-to-Speech},
+  author={Huang, Rongjie and Zhao, Zhou and Liu, Huadai and Liu, Jinglin and Cui, Chenye and Ren, Yi},
+  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
   year={2022}
 }
 ```

@@ -56,7 +56,6 @@ class VocoderDataset(BaseDataset):
         self.batch_max_frames = 0 if self.is_infer else hparams['max_samples'] // hparams['hop_size']
         self.aux_context_window = hparams['aux_context_window']
         self.hop_size = hparams['hop_size']
-        self.use_pitch_embed = hparams['use_pitch_embed']
         if self.is_infer and hparams['test_input_dir'] != '':
             self.indexed_ds, self.sizes = self.load_test_inputs(hparams['test_input_dir'])
             self.avail_idxs = [i for i, _ in enumerate(self.sizes)]
