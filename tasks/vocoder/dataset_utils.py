@@ -110,7 +110,7 @@ class VocoderDataset(BaseDataset):
             if have_pitch:
                 p = batch[idx]['pitch']
                 f0 = batch[idx]['f0']
-            if self.hparams['use_wav']:self._assert_ready_for_upsampling(x, c, self.hop_size, 0) 
+            # if self.hparams['use_wav']:self._assert_ready_for_upsampling(x, c, self.hop_size, 0)
             if len(c) - 2 * self.aux_context_window > self.batch_max_frames:
                 # randomly pickup with the batch_max_steps length of the part
                 batch_max_frames = self.batch_max_frames if self.batch_max_frames != 0 else len(

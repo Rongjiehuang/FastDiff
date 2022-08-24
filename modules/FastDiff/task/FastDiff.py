@@ -79,7 +79,6 @@ class FastDiffTask(VocoderBaseTask):
                 noise_schedule = torch.linspace(0.0001, 0.02, 200).cuda()
 
             # Below are schedules derived by Noise Predictor.
-            # We will release codes of noise predictor training process & noise scheduling process soon. Please Stay Tuned!
             elif reverse_step == 8:
                 noise_schedule = [6.689325005027058e-07, 1.0033881153503899e-05, 0.00015496854030061513,
                                  0.002387222135439515, 0.035597629845142365, 0.3681158423423767, 0.4735414385795593, 0.5]

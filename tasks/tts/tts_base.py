@@ -2,7 +2,7 @@ import filecmp
 
 import matplotlib
 
-from modules.commons.ssim import ssim
+# from modules.commons.ssim import ssim
 from utils.plot import spec_to_figure
 
 matplotlib.use('Agg')

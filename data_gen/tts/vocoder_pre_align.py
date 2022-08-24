@@ -34,17 +34,17 @@ class VocoderPreAlign:
             sr = hparams['audio_sample_rate']
             new_wav_fn = f"{processed_dir}/wav_inputs/{idx}"
             subprocess.check_call(f'sox "{wav_fn}" -t wav "{new_wav_fn}.wav"', shell=True)
-            if pre_align_args['trim_sil']:
-                y, sr = librosa.core.load(new_wav_fn + '.wav')
-                y, _ = librosa.effects.trim(y)
-                audio.save_wav(y, new_wav_fn + '_trim.wav', sr)
-                new_wav_fn = new_wav_fn + '_trim'
             if pre_align_args['sox_resample']:
                 subprocess.check_call(f'sox -v 0.95 "{new_wav_fn}.wav" -r{sr} "{new_wav_fn}_rs.wav"', shell=True)
                 new_wav_fn = new_wav_fn + '_rs'
             if pre_align_args['denoise']:
                 rnnoise(wav_fn, new_wav_fn + '_denoise.wav', out_sample_rate=sr)
                 new_wav_fn = new_wav_fn + '_denoise'
+            if pre_align_args['trim_sil']:
+                y, _ = librosa.core.load(new_wav_fn + '.wav', sr=sr)
+                y, _ = librosa.effects.trim(y)
+                audio.save_wav(y, new_wav_fn + '_trim.wav', sr, norm=True)
+                new_wav_fn = new_wav_fn + '_trim'
             return new_wav_fn + '.wav'
         else:
             return wav_fn
