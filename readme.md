@@ -10,16 +10,20 @@ PyTorch Implementation of [FastDiff (IJCAI'22)](https://arxiv.org/abs/2204.09934
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2204.09934)
 [![GitHub Stars](https://img.shields.io/github/stars/Rongjiehuang/FastDiff?style=social)](https://github.com/Rongjiehuang/FastDiff)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=Rongjiehuang/FastDiff)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-blue)](https://huggingface.co/spaces/Rongjiehuang/ProDiff)
 
 We provide our implementation and pretrained models as open source in this repository.
 
 Visit our [demo page](https://fastdiff.github.io/) for audio samples.
 
+Our follow-up work might also interest you: [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub](https://github.com/Rongjiehuang/ProDiff)
+
 ## News
 - April.22, 2021: **FastDiff** accepted by IJCAI 2022.
 - June.21, 2022: The LJSpeech checkpoint and demo code are provided.
 - August.12, 2022: The VCTK/LibriTTS checkpoints are provided.
-- August.12, 2022: We will release follow-up work [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub](https://github.com/Rongjiehuang/ProDiff), where we futher optimized the speed-and-quality trade-off.
+- August.25, 2022: **FastDiff (tacotron)** is provided.
+- September, 2022: We release follow-up work [ProDiff (ACM Multimedia'22)](https://arxiv.org/abs/2207.06389) on [GitHub](https://github.com/Rongjiehuang/ProDiff), where we futher optimized the speed-and-quality trade-off.
 
 # Quick Started
 We provide an example of how you can generate high-fidelity samples using FastDiff.
@@ -31,11 +35,12 @@ To try on your own dataset, simply clone this repo in your local machine provide
 You can also use pretrained models we provide [here](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=b8vPiA).
 Details of each folder are as in follows:
 
-| Dataset   | Config                                           | 
-|-----------|--------------------------------------------------|
-| LJSpeech  | `modules/FastDiff/config/FastDiff.yaml`          | 
-| LibriTTS  | `modules/FastDiff/config/FastDiff_libritts.yaml` | 
-| VCTK      | `modules/FastDiff/config/FastDiff_vctk.yaml`     |                                                                                                                             |
+| Dataset            | Config                                           | 
+|--------------------|--------------------------------------------------|
+| LJSpeech           | `modules/FastDiff/config/FastDiff.yaml`          | 
+| LibriTTS           | `modules/FastDiff/config/FastDiff_libritts.yaml` | 
+| VCTK               | `modules/FastDiff/config/FastDiff_vctk.yaml`     |    
+| LJSpeech(Tacotron) | `modules/FastDiff/config/FastDiff_tacotron.yaml` |    
 
 More supported datasets are coming soon.
 
@@ -45,13 +50,23 @@ Put the checkpoints in `checkpoints/$your_experiment_name/model_ckpt_steps_*.ckp
 See requirements in `requirement.txt`:
 - [pytorch](https://github.com/pytorch/pytorch)
 - [librosa](https://github.com/librosa/librosa)
-- [tacotron2](https://github.com/NVIDIA/tacotron2) (source included in this repo)
+- [NATSpeech](https://github.com/NATSpeech/NATSpeech)
 
 ## Multi-GPU
 By default, this implementation uses as many GPUs in parallel as returned by `torch.cuda.device_count()`. 
 You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` environment variable before running the training module.
 
 ## Inference for text-to-speech synthesis
+
+### Using ProDiff
+We provide a more efficient and stable pipeline in [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-blue)](https://huggingface.co/spaces/Rongjiehuang/ProDiff) and [GitHub](https://github.com/Rongjiehuang/ProDiff)
+
+### Using Tacotron
+Download LJSpeech checkpoint for neural vocoding of tacotron output [here](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=b8vPiA).
+We provide a demo in `egs/demo_tacotron.ipynb`. 
+
+### Using Portaspeech, DiffSpeech, FastSpeech 2
+
 1. Download LJSpeech checkpoint and put it in `checkpoint/FastDiff/model_ckpt_steps_*.ckpt `
 2. Specify the input `$text`, and an int-type index `$model_index` to choose the TTS model. `0`(Portaspeech, Ren et al), `1`(FastSpeech 2, Ren et al), or `2`(DiffSpeech, Liu et al).
 3. Set `N` for reverse sampling, which is a trade off between quality and speed. 
@@ -98,6 +113,8 @@ python data_gen/tts/bin/pre_align.py --config $path/to/config
 CUDA_VISIBLE_DEVICES=$GPU python data_gen/tts/bin/binarize.py --config $path/to/config
 ```
 
+We also provide our processed LJSpeech dataset [here](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Eo7r83WZPK1GmlwvFhhIKeQBABZpYW3ec9c8WZoUV5HhbA?e=9QoWnf).
+
 ### Training the Refinement Network
 ```bash
 CUDA_VISIBLE_DEVICES=$GPU python tasks/run.py --config $path/to/config  --exp_name $your_experiment_name --reset
@@ -132,13 +149,6 @@ If you find this code useful in your research, please consider citing:
   booktitle = {Proceedings of the Thirty-First International Joint Conference on
                Artificial Intelligence, {IJCAI-22}},
   publisher = {International Joint Conferences on Artificial Intelligence Organization},
-  year={2022}
-}
-
-@inproceedings{huang2022prodiff,
-  title={ProDiff: Progressive Fast Diffusion Model For High-Quality Text-to-Speech},
-  author={Huang, Rongjie and Zhao, Zhou and Liu, Huadai and Liu, Jinglin and Cui, Chenye and Ren, Yi},
-  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
   year={2022}
 }
 ```
