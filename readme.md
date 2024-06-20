@@ -32,7 +32,7 @@ To try on your own dataset, simply clone this repo in your local machine provide
 
 ## Support Datasets and Pretrained Models
 
-You can also use pretrained models we provide [here](https://zjueducn-my.sharepoint.com/:f:/g/personal/rongjiehuang_zju_edu_cn/Epia7La6O7FHsKPTHZXZpoMBF7PoDcjWeKgC-7jtpVkCOQ?e=b8vPiA).
+You can also use pretrained models we provide [here](https://huggingface.co/Rongjiehuang/FastDiff).
 Details of each folder are as in follows:
 
 | Dataset            | Config                                           | 
